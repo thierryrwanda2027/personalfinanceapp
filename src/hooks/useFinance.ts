@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Transaction, FinanceSummary } from '../domain/types';
+import type { Transaction, FinanceSummary } from '../domain/types';
 import { saveToStorage, loadFromStorage, isTransactionArray } from '../services/storage';
 
 const STORAGE_KEY = 'finance_transactions';
