@@ -35,20 +35,20 @@ export function Signup({ onSwitchToLogin }: SignupProps) {
         {error && <div className="auth-error">{error}</div>}
         <div className="form-group">
           <label htmlFor="signup-email">Email</label>
-          <input 
+          <input
             id="signup-email"
-            type="email" 
-            value={email} 
+            type="email"
+            value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             placeholder="Email"
           />
         </div>
         <div className="form-group">
           <label htmlFor="signup-password">Password</label>
-          <input 
+          <input
             id="signup-password"
-            type="password" 
-            value={password} 
+            type="password"
+            value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             placeholder="Password"
           />

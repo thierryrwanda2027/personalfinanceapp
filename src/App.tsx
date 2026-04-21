@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   const { transactions, addTransaction, removeTransaction, totalIncome, totalExpenses, balance } = useFinance();
-  
+
   const [type, setType] = useState<'income' | 'expense'>('expense');
   const [amount, setAmount] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -34,21 +34,21 @@ function App() {
 
     const newTransaction: Transaction = type === 'expense'
       ? {
-          id: crypto.randomUUID(),
-          type: 'expense',
-          amount: parsedAmount,
-          description,
-          date: Date.now(),
-          category: category as ExpenseCategory,
-        }
+        id: crypto.randomUUID(),
+        type: 'expense',
+        amount: parsedAmount,
+        description,
+        date: Date.now(),
+        category: category as ExpenseCategory,
+      }
       : {
-          id: crypto.randomUUID(),
-          type: 'income',
-          amount: parsedAmount,
-          description,
-          date: Date.now(),
-          source: category as IncomeSource,
-        };
+        id: crypto.randomUUID(),
+        type: 'income',
+        amount: parsedAmount,
+        description,
+        date: Date.now(),
+        source: category as IncomeSource,
+      };
 
     addTransaction(newTransaction);
     setAmount('');
@@ -92,7 +92,7 @@ function App() {
       <div className="main-content">
         <form className="transaction-form card" onSubmit={handleSubmit}>
           <h3>Add Transaction</h3>
-          
+
           <div className="form-group">
             <label htmlFor="type">Type</label>
             <select id="type" value={type} onChange={handleTypeChange}>
@@ -105,9 +105,9 @@ function App() {
             <label htmlFor="category">
               {type === 'expense' ? 'Category' : 'Source'}
             </label>
-            <select 
-              id="category" 
-              value={category} 
+            <select
+              id="category"
+              value={category}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCategory(e.target.value as ExpenseCategory | IncomeSource)}
             >
               {type === 'expense'
@@ -119,10 +119,10 @@ function App() {
 
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <input 
+            <input
               id="description"
-              type="text" 
-              value={description} 
+              type="text"
+              value={description}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
               placeholder="e.g. Groceries"
             />
@@ -130,12 +130,12 @@ function App() {
 
           <div className="form-group">
             <label htmlFor="amount">Amount ($)</label>
-            <input 
+            <input
               id="amount"
-              type="number" 
+              type="number"
               step="0.01"
               min="0"
-              value={amount} 
+              value={amount}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
               placeholder="0.00"
             />
@@ -155,7 +155,7 @@ function App() {
                   <div className="transaction-info">
                     <span className="transaction-desc">{t.description}</span>
                     <span className="transaction-meta">
-                      {new Date(t.date).toLocaleDateString()} &bull; 
+                      {new Date(t.date).toLocaleDateString()} &bull;
                       {/* ARCHITECT NOTE: 
                           This switch statement acts as a Type Guard that narrows the Discriminated Union.
                           The compiler now knows exactly whether we're dealing with an Expense or an Income,
@@ -163,7 +163,7 @@ function App() {
                           This guarantees our UI is perfectly in sync with our data model.
                       */}
                       {(() => {
-                        switch(t.type) {
+                        switch (t.type) {
                           case 'expense':
                             return ` ${t.category}`;
                           case 'income':
@@ -176,8 +176,8 @@ function App() {
                     <span className={`transaction-amount ${t.type === 'income' ? 'text-emerald' : 'text-rose'}`}>
                       {t.type === 'income' ? '+' : '-'}${t.amount.toFixed(2)}
                     </span>
-                    <button 
-                      onClick={() => removeTransaction(t.id)} 
+                    <button
+                      onClick={() => removeTransaction(t.id)}
                       className="btn-delete"
                       aria-label="Delete transaction"
                     >

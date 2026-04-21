@@ -30,7 +30,7 @@ export function loadFromStorage<T>(
     if (validator(parsed)) {
       return parsed;
     }
-    
+
     console.warn(`Data validation failed for key "${key}". Returning fallback.`);
     return fallback;
   } catch (error) {
@@ -44,10 +44,10 @@ export function isTransactionArray(data: unknown): data is Transaction[] {
 
   return data.every((item: unknown) => {
     if (typeof item !== 'object' || item === null) return false;
-    
+
     // We safely treat 'item' as a record to check its properties
     const record = item as Record<string, unknown>;
-    
+
     if (
       typeof record.id !== 'string' ||
       typeof record.amount !== 'number' ||
@@ -88,7 +88,7 @@ export function getUser(): User | null {
     if (typeof parsed === 'object' && parsed !== null && typeof (parsed as Record<string, unknown>).email === 'string') {
       return parsed as User;
     }
-    
+
     return null;
   } catch (error) {
     console.error('Failed to get user:', error);
