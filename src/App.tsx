@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFinance } from './hooks/useFinance';
-import type { Transaction, ExpenseCategory, IncomeSource } from './domain/types';
+import type { Transaction, ExpenseCategory, IncomeSource, User } from './domain/types';
+import { getUser, logoutUser } from './services/storage';
+import { Auth } from './components/Auth';
 import './App.css';
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    setUser(getUser());
+  }, []);
+
   const { transactions, addTransaction, removeTransaction, totalIncome, totalExpenses, balance } = useFinance();
   
   const [type, setType] = useState<'income' | 'expense'>('expense');
@@ -50,10 +58,20 @@ function App() {
   const expenseCategories: ExpenseCategory[] = ['Food', 'Transport', 'Rent', 'Shopping'];
   const incomeSources: IncomeSource[] = ['Salary', 'Freelance', 'Investments'];
 
+  if (!user) {
+    return <Auth />;
+  }
+
+  const handleLogout = () => {
+    logoutUser();
+    window.location.reload();
+  };
+
   return (
     <div className="container">
-      <header className="header">
+      <header className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>Persona Finance</h1>
+        <button onClick={handleLogout} className="btn-delete" style={{ fontSize: '1rem', padding: '0.5rem 1rem', border: '1px solid var(--slate-700)', borderRadius: 'var(--radius-md)' }}>Logout</button>
       </header>
 
       <div className="summary-cards">

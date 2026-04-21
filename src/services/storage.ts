@@ -1,4 +1,4 @@
-import type { Transaction } from '../domain/types';
+import type { Transaction, User } from '../domain/types';
 
 // ARCHITECT NOTE:
 // We employ a Generic Storage Utility <T> to demonstrate reusability. Instead of hardcoding
@@ -67,4 +67,39 @@ export function isTransactionArray(data: unknown): data is Transaction[] {
 
     return false;
   });
+}
+
+const USER_STORAGE_KEY = 'klab_finance_user';
+
+export function saveUser(user: User): void {
+  try {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+  } catch (error) {
+    console.error('Failed to save user:', error);
+  }
+}
+
+export function getUser(): User | null {
+  try {
+    const item = localStorage.getItem(USER_STORAGE_KEY);
+    if (!item) return null;
+
+    const parsed = JSON.parse(item);
+    if (typeof parsed === 'object' && parsed !== null && typeof (parsed as Record<string, unknown>).email === 'string') {
+      return parsed as User;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Failed to get user:', error);
+    return null;
+  }
+}
+
+export function logoutUser(): void {
+  try {
+    localStorage.removeItem(USER_STORAGE_KEY);
+  } catch (error) {
+    console.error('Failed to logout user:', error);
+  }
 }

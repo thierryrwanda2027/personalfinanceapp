@@ -226,3 +226,140 @@ body {
   padding: 2rem 0;
   font-style: italic;
 }
+
+/* Auth Layout */
+.auth-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--slate-100);
+}
+
+.auth-left {
+  flex: 1;
+  background-color: var(--slate-900);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-left-content {
+  max-width: 450px;
+}
+
+.auth-logo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05em;
+}
+
+.auth-illustration-container {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.auth-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.auth-left h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  line-height: 1.2;
+}
+
+.auth-left p {
+  font-size: 1rem;
+  color: var(--slate-200);
+  line-height: 1.6;
+}
+
+.auth-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--slate-50);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.auth-form-container h2 {
+  font-size: 2rem;
+  color: var(--slate-900);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.auth-form .form-group label {
+  color: var(--slate-700);
+  font-weight: 500;
+}
+
+.auth-form .form-group input {
+  background-color: white;
+  border: 1px solid var(--slate-200);
+  color: var(--slate-900);
+}
+
+.auth-form .form-group input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.auth-submit {
+  background-color: var(--slate-900);
+  color: white;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+}
+
+.auth-submit:hover {
+  background-color: var(--slate-800);
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--slate-500);
+}
+
+.auth-link {
+  color: var(--slate-900);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.auth-error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}

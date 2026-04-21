@@ -31,3 +31,9 @@ export interface FinanceSummary {
   totalExpenses: number;
   balance: number;
 }
+
+export interface User {
+  email: string;
+  name?: string;
+}
+
